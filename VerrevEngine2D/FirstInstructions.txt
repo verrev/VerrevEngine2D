@@ -1,0 +1,31 @@
+To use this library in your own project, follow these steps:
+
+1) Include VerrevEngine2D.h.
+2) In project properties, add the path to the corresponding (Debug/Release) VerrevEngine2D.lib file.
+   Optionally, one can skip this step and include the library by simply adding the following line to
+   a .cpp file of yours: #pragma comment (lib, "example/path/to/lib/Debug/VerrevEngine2D.lib").
+3) The library is now linked and you are ready to start using it to build your program.
+
+4) To use this library, you must set up the following project structure:
+   4.1) make a game class for your game by inheriting from [CGame]. In doing so, overload the init,
+        destroy, update and draw functions. Add a [CD2DRenderer] and [CInput] member variables. Finally,
+		add your own functionality as needed.
+   4.2) create your states by inheriting from [CState]. In doing so, override the init, destroy, update and
+        draw functions. These are the classes that contain the main logic for each of your game's states.
+		init and destroy are called once, while update and render are called every frame.
+   4.3) create your state factory by inheriting from [CStateFactory]. In doing so, overload the getState
+        function. Add an enum containing the various state names you are going to use (e.g. STATE_MAINMENU,
+		STATE_HIGHSCORES). The function getState takes an UINT, cast it to your enum type and then return
+		a pointer to the corresponding state you created.
+   4.4) set up a .cpp file containing the entrypoint to the program. In addition to creating a window,
+        instantiate your overloaded [CGame] class and call setStateFactory, init and setState in order.
+		In your main message loop, call the game class' update and draw functions. Finally, before exiting
+		the entrypoint's scope, call the game class' destroy function.
+
+The engine supports drawing various geometric primitives as well as higher-level constructs, such as 
+buttons, textboxes and checkboxes, all complete with input handling.
+
+To see an example of how any of these steps might be done, consult an example project, such as VerrevBreakout.
+
+https://github.com/verrev
+
